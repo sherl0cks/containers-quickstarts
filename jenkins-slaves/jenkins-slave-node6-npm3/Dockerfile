@@ -40,5 +40,10 @@ RUN set -ex && \
   rm -rf ~/node-v${NODE_VERSION}-linux-x64.tar.gz ~/SHASUMS256.txt.asc /tmp/node-v${NODE_VERSION} ~/.npm ~/.node-gyp ~/.gnupg \
     /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html
 
+RUN npm install -g cordova && \
+  npm install -g ionic && \
+  npm install -g fh-fhc
+
 # switch users as in https://github.com/openshift/jenkins/blob/master/slave-nodejs/Dockerfile.rhel7
 USER 1001
+
