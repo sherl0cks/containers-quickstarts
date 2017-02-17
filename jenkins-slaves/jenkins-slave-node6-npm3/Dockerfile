@@ -44,6 +44,8 @@ RUN npm install -g cordova && \
   npm install -g ionic && \
   npm install -g fh-fhc
 
+RUN  chmod 777 -R /home/jenkins/.npm
+
 # switch users as in https://github.com/openshift/jenkins/blob/master/slave-nodejs/Dockerfile.rhel7
 USER 1001
 
