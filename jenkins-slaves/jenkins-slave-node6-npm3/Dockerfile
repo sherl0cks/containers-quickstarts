@@ -46,6 +46,8 @@ RUN npm install -g cordova && \
 
 RUN  chmod 777 -R /home/jenkins/.npm
 
+ADD ssh_config /etc/ssh/ssh_config
+
 # switch users as in https://github.com/openshift/jenkins/blob/master/slave-nodejs/Dockerfile.rhel7
 USER 1001
 
