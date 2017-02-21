@@ -21,6 +21,7 @@
 Host *
 	GSSAPIAuthentication yes
 	StrictHostKeyChecking no
+	IdentityFile /etc/secrets/fhc/ssh-key
 # the above two lines were added
 
 # If this option is set to yes then remote X11 clients will have full access
