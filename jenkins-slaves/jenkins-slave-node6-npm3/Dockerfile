@@ -42,11 +42,11 @@ RUN set -ex && \
 
 RUN npm install -g cordova && \
   npm install -g ionic && \
-  npm install -g fh-fhc
-
-RUN yum-config-manager --enable rhel-7-server-optional-rpms && \
-  yum install -y ruby-devel rubygems && \
-  gem install fastlane
+  npm install -g fh-fhc && \
+  yum-config-manager --enable rhel-7-server-optional-rpms && \
+  yum install -y ruby-devel rubygems yum groupinstall 'Development Tools' -y && \
+  gem install fastlane && \
+  yum clean all -y
 
 
 
