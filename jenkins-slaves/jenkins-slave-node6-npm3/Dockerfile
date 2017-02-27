@@ -44,6 +44,12 @@ RUN npm install -g cordova && \
   npm install -g ionic && \
   npm install -g fh-fhc
 
+RUN subscription-manager repos  --enable rhel-7-server-optional-rpms && \
+  yum install -y ruby-devel rubygems && \
+  gem install fastlane
+
+
+
 RUN  chmod 777 -R /home/jenkins/.npm
 
 ADD ssh_config /etc/ssh/ssh_config
