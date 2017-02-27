@@ -44,7 +44,8 @@ RUN npm install -g cordova && \
   npm install -g ionic && \
   npm install -g fh-fhc
 
-RUN yum install -y ruby-devel rubygems && \
+RUN yum-config-manager --enable rhel-7-server-optional-rpms && \
+  yum install -y ruby-devel rubygems && \
   gem install fastlane
 
 
