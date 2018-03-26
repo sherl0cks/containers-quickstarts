@@ -1,0 +1,19 @@
+#!/bin/bash                                                                                                                                                              
+
+set -ex
+
+mkdir /tmp/apicurio                                                                                                                                                     
+cd /tmp/apicurio                                                                                                                                                       
+
+curl -L -O https://github.com/Apicurio/apicurio-studio/releases/download/v0.2.4.Final/apicurio-studio-0.2.4.Final-quickstart.zip
+unzip -q apicurio-studio-0.2.4.Final-quickstart.zip                                                                                                                          
+mv apicurio-studio-0.2.4.Final/standalone/deployments/* $JBOSS_HOME/standalone/deployments         
+
+curl -L -O https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.zip
+unzip -q mysql-connector-java-5.1.45.zip      
+mv mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar $JBOSS_HOME/standalone/deployments/
+
+ls -alh $JBOSS_HOME/standalone/deployments/                                                                                                                                   
+rm -rf /tmp/apicurio
+
+cp /tmp/src/configuration/* $JBOSS_HOME/standalone/configuration

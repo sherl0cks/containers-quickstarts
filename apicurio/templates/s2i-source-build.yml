@@ -1,0 +1,72 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: s2i-source-build
+  annotations:
+    openshift.io/display-name: S2I Source Build
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      build: "${NAME}"
+      app: "${NAME}"
+    name: "${NAME}"
+  spec: {}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      build: "${NAME}"
+      app: "${NAME}"
+    name: "${NAME}"
+  spec:
+    nodeSelector: 
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${NAME}:latest"
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: "${SOURCE_CONTEXT_DIR}"
+      git:
+        ref: "${SOURCE_REPOSITORY_REF}"
+        uri: "${SOURCE_REPOSITORY_URL}"
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: "${S2I_BASE_IMAGE}"
+          namespace: "${S2I_BASE_IMAGE_NAMESPACE}"
+      type: Source
+    triggers:
+    - type: ConfigChange  
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name assigned to all objects and the resulting imagestream.
+  required: true
+- name: SOURCE_REPOSITORY_URL
+  displayName: Git Repository URL
+  description: The URL of the repository with your Jenkinsfile.
+  required: true
+- name: SOURCE_REPOSITORY_REF
+  displayName: Git Reference
+  description: Set this to a branch name, tag or other ref of your repository if you are not using the default (master) branch.
+  value: master
+- name: SOURCE_CONTEXT_DIR
+  displayName: Git Context Directory for app build
+  description: Set this to the directory where the application source code is if not using the default root directory
+- name: S2I_BASE_IMAGE
+  displayName: S2I Base Image for Application
+  description: The base image for building the Application with S2I, including image tag
+  required: true
+- name: S2I_BASE_IMAGE_NAMESPACE
+  displayName: Namespace for the S2I Base Image
+  description: The namespace where the S2I base image lives
+  required: true
+  value: redhat-openjdk18-openshift:latest

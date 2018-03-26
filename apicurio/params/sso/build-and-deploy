@@ -1,0 +1,4 @@
+ HTTPS_NAME=jboss
+ HTTPS_PASSWORD=mykeystorepass
+ SSO_ADMIN_USERNAME=ssoUser 
+ SSO_ADMIN_PASSWORD=ssoPassword

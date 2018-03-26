@@ -1,0 +1,3 @@
+ROLE_NAME=edit
+SERVICE_ACCOUNT_NAME=sso-service-account
+SERVICE_ACCOUNT_NAMESPACE=dev-tooling

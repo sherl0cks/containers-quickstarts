@@ -1,0 +1,50 @@
+---
+openshift_cluster_content:
+- object: projectrequest
+  content:
+  - name: dev-tooling-project
+    template: "https://raw.githubusercontent.com/redhat-cop/cluster-lifecycle/master/files/projectrequest/template.yml"
+    template_action: create
+    params: "{{ inventory_dir }}/../params/projectrequests/dev-tooling"
+    tags:
+    - projects
+- object: apicurio-server
+  content:
+  - name: eap-7.1-imagestream
+    template: "{{ inventory_dir }}/../templates/imagestream-one-tag.yml"
+    params: "{{ inventory_dir }}/../params/apicurio/eap-imagestream"
+    namespace: dev-tooling
+    tags:
+    - apicurio
+  - name: apicurio-build
+    template: "{{ inventory_dir }}/../templates/s2i-source-build.yml"
+    params: "{{ inventory_dir }}/../params/apicurio/apicurio-image-build"
+    namespace: dev-tooling
+    tags:
+    - apicurio
+- object: sso
+  content:
+  - name: secret
+    file: https://raw.githubusercontent.com/jboss-openshift/application-templates/master/secrets/sso-app-secret.json
+    namespace: dev-tooling
+    tags:
+    - sso
+  - name: service-account
+    template: "{{ inventory_dir }}/../templates/service-account.yml"
+    params: "{{ inventory_dir }}/../params/sso/service-account"
+    namespace: dev-tooling
+    tags:
+    - sso
+  - name: role-binding
+    template: "{{ inventory_dir }}/../templates/role-binding-to-service-account.yml"
+    params: "{{ inventory_dir }}/../params/sso/role-binding"
+    namespace: dev-tooling
+    tags:
+    - sso
+  - name: sso-mysql
+    template: openshift//sso71-mysql
+    params: "{{ inventory_dir }}/../params/sso/build-and-deploy"
+    namespace: dev-tooling
+    tags:
+    - sso
+

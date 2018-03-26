@@ -1,0 +1,33 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: imagestream-one-tag
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: ${NAME}
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: ${DOCKER_IMAGE_NAME}
+      importPolicy: {}
+      name: ${IMAGESTREAM_TAG_NAME}
+      referencePolicy:
+        type: Source
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name assigned to all objects and the resulting imagestream.
+  required: true
+- name: DOCKER_IMAGE_NAME
+  displayName: Docker Image Name
+  description: The docker image to pull for the imagestream tag
+  required: true
+- name: IMAGESTREAM_TAG_NAME
+  displayName: Imagestream Tag Name
+  description: The name of the imagestream tag
+  required: true        

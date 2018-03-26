@@ -1,0 +1,6 @@
+NAME=apicurio
+SOURCE_CONTEXT_DIR=.openshift-applier/s2i-config/apicurio
+SOURCE_REPOSITORY_REF=master
+SOURCE_REPOSITORY_URL=https://github.com/sherl0cks/openshift-apicurio.git
+S2I_BASE_IMAGE=eap71-openshift:latest
+S2I_BASE_IMAGE_NAMESPACE=dev-tooling
