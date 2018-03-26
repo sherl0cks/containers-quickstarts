@@ -12,10 +12,10 @@ This quickstart is an [openshift-applier inventory](https://github.com/redhat-co
 
 1. Log into OpenShift
 2. Make sure the docker daemon is running on your host
-3. ```[apicurio]$ ./run.sh```
+3. `[apicurio]$ ./run.sh`
 
 ## Usage Without Docker
 
 1. Log into the relevant OpenShift cluster
-2. ```[apicurio]$ ansible-galaxy install -r requirements.yml --roles-path=roles```
-3. ```[apicurio]$ ansible-playbook roles/casl-ansible/playbooks/openshift-cluster-seed.yml -i inventory/```
+2. `[apicurio]$ ansible-galaxy install -r requirements.yml --roles-path=roles`
+3. `[apicurio]$ ansible-playbook roles/casl-ansible/playbooks/openshift-cluster-seed.yml -i inventory/`
