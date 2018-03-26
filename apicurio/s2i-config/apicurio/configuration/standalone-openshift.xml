@@ -32,7 +32,6 @@
     </extensions>
 
     <system-properties>
-        <property name="apicurio.kc.auth.rootUrl" value="http://sso-apicurio.apps.example.com/auth"/>
         <property name="apicurio.kc.auth.realm" value="apicurio-local"/>
         <property name="apicurio.hub.storage.jdbc.type" value="mysql5"/>
         <property name="apicurio.hub.storage.jdbc.init" value="false"/>
@@ -420,7 +419,7 @@
         <subsystem xmlns="urn:jboss:domain:keycloak:1.1">
             <realm name="apicurio-local">
                 <realm-public-key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvq5bOyrTX9TBlPn0Sz5+QtSSEKTsyFXzdbHSBdDhoX8L2GaFOxf+jiFcAUay4Wrs6Kyv4ILXguVVqzJruIp8xd2KLj2lY46u81fjV091urTsQ76yCIu3Uf414PwHqTies1aCr0LsRCawakloXeX1mz9BSO5aBQg7PGrcahwHq8X/wu9JB44NWa7qCTLlUinpaYEI15BRrSViVQRorYajKDS0j8Rt5gcYtT6guqCKKREr0S0Dg3R/kByLDyElaN5B/d6JX+znp9DQpoXHjmGKbUyN1lkU2s549O+Fnl5RcitjXdYm7uKAeQygHn+tc8ku08/p3iOfivkcyiqtgw+o5wIDAQAB</realm-public-key>
-                <auth-server-url>${apicurio.kc.auth.rootUrl}</auth-server-url>
+                <auth-server-url>${env.AUTH_SERVER_URL}</auth-server-url>
                 <ssl-required>NONE</ssl-required>
                 <enable-cors>true</enable-cors>
                 <principal-attribute>preferred_username</principal-attribute>
